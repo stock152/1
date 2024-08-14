@@ -1,36 +1,30 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combined Code</title>
-</head>
-<body>
-    <h1>잠시만 기다려주세요 !!</h1>
-    <p id="ipDisplay" data-ke-size="size16">&nbsp;</p>
-    <div id="titleContainer">&nbsp;</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script type="text/javascript">
+    // URL 파라미터 값을 가져오는 함수
+    function getParameterByName(name) {
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var url = window.location.href;
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('https://jsonip.com/')
-                .then(response => response.json())
-                .then(ipData => {
-                    var ipAddress = ipData.ip;
-                    var urlParams = new URLSearchParams(window.location.search);
-                    var vValue = urlParams.get('n');
-                    if (!vValue || ipAddress.startsWith('110.93.154') || ipAddress.startsWith('106.249.45') || ipAddress.startsWith('110.35.109')) {
-                        window.location.href = 'https://www.naver.com/';
-                    } else {
-                        var newUrl = "https://tistory.asia/access_board/"+vValue;
-                        window.location.href = newUrl;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching IP:', error);
-                    var ipDisplay = document.getElementById("ipDisplay");
-                    ipDisplay.textContent = "IP 주소를 가져오는 중 오류 발생.";
-                });
-        });
-    </script>
-</body>
-</html>
+    // t, a, l 파라미터 값을 가져오기
+    //var tValue = getParameterByName('t');
+    var aValue = getParameterByName('a');
+    var lValue = getParameterByName('l');
+
+    // t, a, l 값이 있으면 새로운 URL로 리디렉션, 없으면 naver.com으로 리디렉션
+    if (aValue && lValue) {
+        setTimeout(function(){
+            //window.location.href = 'http://yovtvbe.me/at' + aValue + '/lk/' + lValue + '?stok=' + tValue;
+          window.location.href = 'http://yovtvbe.me/at' + aValue + '/lk/' + lValue + '?stok=tstory';
+        }, 1000); // 1500 milliseconds = 1.5 seconds
+    } else {
+        window.location.href = 'https://www.naver.com';
+    }
+</script>
+<h2 data-ke-size="size26"><b>잠시후 이동됩니다. <br />잠시만 기다려주세요!</b></h2>
